@@ -32,6 +32,8 @@ phases:
           -e "REGION=$AWS_DEFAULT_REGION" \
           -e "ENV=$ENV" \
           -e "PARAMETER_OVERRIDES=$PARAMETER_OVERRIDES" \
+          -e "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" \
+          -e "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" \
           -i $IMAGE_URI:$IMAGE_TAG
   post_build:
     commands:
