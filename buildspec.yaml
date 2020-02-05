@@ -42,8 +42,6 @@ phases:
             echo "Error: Lambda deployment failed."
             exit 1
         fi
-  post_build:
-    commands:
       - |
         if [ "$CODEBUILD_GIT_BRANCH" = "master" ] || [ "$CODEBUILD_GIT_BRANCH" = "development" ]; then
           docker push "$IMAGE_URI:$IMAGE_TAG";
