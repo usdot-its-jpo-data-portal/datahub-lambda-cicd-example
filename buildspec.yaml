@@ -35,6 +35,13 @@ phases:
           -e "AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION" \
           -e "AWS_CONTAINER_CREDENTIALS_RELATIVE_URI=$AWS_CONTAINER_CREDENTIALS_RELATIVE_URI" \
           -i $IMAGE_URI:$IMAGE_TAG
+      - |
+        if [ $? -eq 0 ]; then
+            echo "Info: Lambda deployment succeeded."
+        else
+            echo "Error: Lambda deployment failed."
+            exit 1
+        fi
   post_build:
     commands:
       - |
