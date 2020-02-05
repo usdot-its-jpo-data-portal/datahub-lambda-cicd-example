@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: "AWS::Serverless-2016-10-31"
+Parameters:
+  ENV:
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - stage
+      - prod
+  FUNCVAR:
+    Type: String
+    Default: examplevalue
+  LAMBDAROLE:
+    Type: String
+Resources:
+  HelloWorld:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      CodeUri: src
+      FunctionName: !Sub
+        - hello-world-${AWS_ENV}
+        - { AWS_ENV: !Ref ENV }
+      Role: !Sub
+        - ${LAMBDA_ROLE}
+        - { LAMBDA_ROLE: !Ref LAMBDAROLE }
+      Runtime: python3.6
+      Timeout: 60
+      Description: Test function for promotion process.
+      Handler: main.lambda_handler
+      Environment:
+        Variables:
+          FUNC_VAR: !Ref FUNCVAR
