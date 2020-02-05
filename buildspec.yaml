@@ -42,5 +42,4 @@ phases:
           docker push "$IMAGE_URI:$IMAGE_TAG";
           docker tag "$IMAGE_URI:$IMAGE_TAG" "$IMAGE_URI:latest"
           docker push "$IMAGE_URI:latest";
-          aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE --force-new-deployment;
         fi
