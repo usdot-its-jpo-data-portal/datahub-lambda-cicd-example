@@ -11,8 +11,6 @@ Parameters:
   FUNCVAR:
     Type: String
     Default: examplevalue
-  LAMBDAROLE:
-    Type: String
 Resources:
   HelloWorld:
     Type: "AWS::Serverless::Function"
@@ -21,9 +19,7 @@ Resources:
       FunctionName: !Sub
         - hello-world-${AWS_ENV}
         - { AWS_ENV: !Ref ENV }
-      Role: !Sub
-        - ${LAMBDA_ROLE}
-        - { LAMBDA_ROLE: !Ref LAMBDAROLE }
+      Role: '{{resolve:ssm:lambda_role_arn:1}}'
       Runtime: python3.6
       Timeout: 60
       Description: Test function for promotion process.
