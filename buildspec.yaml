@@ -7,7 +7,7 @@ version: 0.2
 # BUCKET=
 # FUNCTION_NAME=
 # ENV=
-# PARAMETER_OVERRIDES="--parameter-overrides LAMBDAROLE=rolename ENV=envname"
+# PARAMETER_OVERRIDES="--parameter-overrides ENV=envname"
 
 phases:
   install:
